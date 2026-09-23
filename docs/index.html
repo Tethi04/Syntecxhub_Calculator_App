@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aesthetic Calculator | Syntecxhub</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #0F0F1A;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 16px;
+        }
+
+        /* Container designed to fit both laptop desktop screens and mobile displays */
+        .calculator-card {
+            background-color: #0F0F1A;
+            width: 100%;
+            max-width: 380px;
+            padding: 24px;
+            border-radius: 32px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .display-container {
+            background-color: #181828;
+            border-radius: 28px;
+            padding: 24px;
+            text-align: right;
+            margin-bottom: 20px;
+            min-height: 130px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            word-wrap: break-word;
+            word-break: break-all;
+        }
+
+        .expression {
+            color: #8E8EA9;
+            font-size: 1.1rem;
+            min-height: 24px;
+            margin-bottom: 6px;
+        }
+
+        .result {
+            color: #FFFFFF;
+            font-size: 2.6rem;
+            font-weight: bold;
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        button {
+            height: 68px;
+            border: none;
+            border-radius: 20px;
+            font-size: 1.35rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.15s ease-in-out;
+            outline: none;
+            user-select: none;
+        }
+
+        button:active {
+            transform: scale(0.94);
+            filter: brightness(1.2);
+        }
+
+        /* Number Buttons */
+        .btn-num {
+            background-color: #212135;
+            color: #FFFFFF;
+        }
+        .btn-num:hover {
+            background-color: #2B2B45;
+        }
+
+        /* Operator Buttons (+, -, ×, ÷) */
+        .btn-op {
+            background-color: #2D2B4A;
+            color: #A78BFA;
+        }
+        .btn-op:hover {
+            background-color: #38355C;
+        }
+
+        /* Special Action Buttons (C, Delete) */
+        .btn-action {
+            background-color: #342D45;
+            color: #FF7597;
+        }
+        .btn-action:hover {
+            background-color: #453B5C;
+        }
+
+        /* Equals Accent Button */
+        .btn-equals {
+            background-color: #7C3AED;
+            color: #FFFFFF;
+        }
+        .btn-equals:hover {
+            background-color: #8B5CF6;
+        }
+
+        /* Zero button spans across 2 grid spaces */
+        .btn-zero {
+            grid-column: span 2;
+        }
+
+        /* Media queries for smaller mobile screens */
+        @media (max-width: 400px) {
+            .calculator-card {
+                padding: 16px;
+                border-radius: 24px;
+            }
+            button {
+                height: 58px;
+                font-size: 1.2rem;
+            }
+            .result {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calculator-card">
+        <div class="display-container">
+            <div class="expression" id="expression"></div>
+            <div class="result" id="display">0</div>
+        </div>
+
+        <div class="grid-layout">
+            <button class="btn-action" onclick="clearDisplay()">C</button>
+            <button class="btn-action" onclick="deleteChar()">⌫</button>
+            <button class="btn-op" onclick="appendOperator('/')">÷</button>
+            <button class="btn-op" onclick="appendOperator('*')">×</button>
+
+            <button class="btn-num" onclick="appendNumber('7')">7</button>
+            <button class="btn-num" onclick="appendNumber('8')">8</button>
+            <button class="btn-num" onclick="appendNumber('9')">9</button>
+            <button class="btn-op" onclick="appendOperator('-')">-</button>
+
+            <button class="btn-num" onclick="appendNumber('4')">4</button>
+            <button class="btn-num" onclick="appendNumber('5')">5</button>
+            <button class="btn-num" onclick="appendNumber('6')">6</button>
+            <button class="btn-op" onclick="appendOperator('+')">+</button>
+
+            <button class="btn-num" onclick="appendNumber('1')">1</button>
+            <button class="btn-num" onclick="appendNumber('2')">2</button>
+            <button class="btn-num" onclick="appendNumber('3')">3</button>
+            <button class="btn-equals" onclick="calculate()">=</button>
+
+            <button class="btn-num btn-zero" onclick="appendNumber('0')">0</button>
+            <button class="btn-num" onclick="appendNumber('.')">.</button>
+        </div>
+    </div>
+
+    <script>
+        let currentInput = '';
+        let operator = '';
+        let firstOperand = null;
+        let waitingForSecondOperand = false;
+
+        const display = document.getElementById('display');
+        const expression = document.getElementById('expression');
+
+        function appendNumber(num) {
+            if (waitingForSecondOperand) {
+                currentInput = num;
+                waitingForSecondOperand = false;
+            } else {
+                if (num === '.' && currentInput.includes('.')) return;
+                currentInput = currentInput === '0' && num !== '.' ? num : currentInput + num;
+            }
+            updateDisplay();
+        }
+
+        function appendOperator(op) {
+            const displayOp = op === '*' ? '×' : op === '/' ? '÷' : op;
+            
+            if (firstOperand === null) {
+                firstOperand = parseFloat(currentInput || '0');
+            } else if (operator && !waitingForSecondOperand) {
+                const result = performCalculation();
+                firstOperand = result;
+                currentInput = String(result);
+            }
+            
+            operator = op;
+            waitingForSecondOperand = true;
+            expression.innerText = `${firstOperand} ${displayOp}`;
+            updateDisplay();
+        }
+
+        function calculate() {
+            if (firstOperand === null || operator === '') return;
+
+            const secondOperand = parseFloat(currentInput);
+            expression.innerText = `${firstOperand} ${operator === '*' ? '×' : operator === '/' ? '÷' : operator} ${secondOperand} =`;
+            
+            const result = performCalculation();
+            if (result === 'Cannot divide by 0') {
+                display.innerText = result;
+            } else {
+                display.innerText = result;
+                currentInput = String(result);
+            }
+
+            firstOperand = null;
+            operator = '';
+            waitingForSecondOperand = false;
+        }
+
+        function performCalculation() {
+            const secondOperand = parseFloat(currentInput);
+            if (operator === '/' && secondOperand === 0) {
+                return 'Cannot divide by 0';
+            }
+            
+            let res = 0;
+            switch (operator) {
+                case '+': res = firstOperand + secondOperand; break;
+                case '-': res = firstOperand - secondOperand; break;
+                case '*': res = firstOperand * secondOperand; break;
+                case '/': res = firstOperand / secondOperand; break;
+            }
+            return Number.isInteger(res) ? res : parseFloat(res.toFixed(4));
+        }
+
+        function clearDisplay() {
+            currentInput = '0';
+            firstOperand = null;
+            operator = '';
+            waitingForSecondOperand = false;
+            expression.innerText = '';
+            updateDisplay();
+        }
+
+        function deleteChar() {
+            if (currentInput.length > 1) {
+                currentInput = currentInput.slice(0, -1);
+            } else {
+                currentInput = '0';
+            }
+            updateDisplay();
+        }
+
+        function updateDisplay() {
+            display.innerText = currentInput || '0';
+        }
+    </script>
+</body>
+</html>
