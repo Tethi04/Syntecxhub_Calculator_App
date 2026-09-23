@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pastel Glass Calculator | Syntecxhub</title>
+    <title>Pastel Glass Calculator</title>
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
         body {
-            /* Pastel Cyan-Pink-Purple Fluid Mesh Gradient */
-            background: linear-gradient(135deg, #a5f3fc 0%, #c084fc 45%, #f472b6 75%, #bae6fd 100%);
+            /* Bright Pastel Mesh Gradient */
+            background: linear-gradient(135deg, #a5f3fc 0%, #c084fc 45%, #f472b6 80%, #bae6fd 100%) !important;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -24,7 +24,7 @@
             overflow: hidden;
         }
 
-        /* 3D Floating Orbs & Shapes matching the photo */
+        /* 3D Floating Glass Orbs */
         .orb {
             position: absolute;
             border-radius: 50%;
@@ -34,52 +34,45 @@
             box-shadow: inset 2px 2px 8px rgba(255, 255, 255, 0.8), 0 10px 20px rgba(0, 0, 0, 0.05);
             z-index: 1;
         }
-        .orb-top-left {
-            width: 160px;
-            height: 160px;
-            top: 15%;
-            left: 22%;
-            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.8), rgba(192, 132, 252, 0.2));
+        .orb-1 {
+            width: 150px;
+            height: 150px;
+            top: 10%;
+            left: 15%;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(192, 132, 252, 0.3));
         }
-        .orb-top-small {
-            width: 80px;
-            height: 80px;
-            top: 18%;
-            left: 36%;
-            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(165, 243, 252, 0.3));
-        }
-        .orb-right-pink {
-            width: 70px;
-            height: 70px;
-            top: 36%;
-            right: 22%;
+        .orb-2 {
+            width: 75px;
+            height: 75px;
+            top: 35%;
+            right: 12%;
             background: radial-gradient(circle at 30% 30%, #f472b6, #e11d48);
             box-shadow: 0 10px 25px rgba(244, 114, 182, 0.4);
         }
-        .orb-bottom-cyan {
+        .orb-3 {
             width: 120px;
             height: 120px;
-            bottom: 18%;
-            right: 24%;
+            bottom: 12%;
+            right: 18%;
             background: radial-gradient(circle at 30% 30%, rgba(165, 243, 252, 0.9), rgba(56, 189, 248, 0.4));
         }
 
-        /* Glassmorphic Calculator Outer Card */
+        /* Glassmorphic Main Card */
         .calculator-card {
             position: relative;
             z-index: 2;
-            background: rgba(255, 255, 255, 0.28);
+            background: rgba(255, 255, 255, 0.32) !important;
             backdrop-filter: blur(30px) saturate(160%);
             -webkit-backdrop-filter: blur(30px) saturate(160%);
             width: 100%;
-            max-width: 360px;
+            max-width: 350px;
             padding: 24px;
             border-radius: 36px;
-            border: 1.5dp solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.06), inset 0 1px 2px rgba(255, 255, 255, 0.6);
+            border: 1.5px solid rgba(255, 255, 255, 0.6) !important;
+            box-shadow: 0 25px 50px rgba(147, 51, 234, 0.12), inset 0 1px 2px rgba(255, 255, 255, 0.8);
         }
 
-        /* Window Dots (...) on Top-Left */
+        /* Top Window Dots */
         .window-dots {
             display: flex;
             gap: 6px;
@@ -88,117 +81,86 @@
         .dot {
             width: 8px;
             height: 8px;
-            background-color: rgba(255, 255, 255, 0.85);
+            background-color: rgba(255, 255, 255, 0.9);
             border-radius: 50%;
         }
 
-        /* Display Container */
+        /* Display Area */
         .display-container {
             text-align: right;
-            padding: 10px 8px 24px 8px;
+            padding: 8px 8px 20px 8px;
             min-height: 110px;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            word-wrap: break-word;
             word-break: break-all;
         }
 
         .expression {
-            color: #9061F9;
-            font-size: 1.25rem;
+            color: #7e22ce;
+            font-size: 1.2rem;
             font-weight: 500;
-            min-height: 28px;
+            min-height: 26px;
             margin-bottom: 4px;
-            letter-spacing: 0.5px;
         }
 
         .result {
-            color: #FFFFFF;
+            color: #ffffff;
             font-size: 3rem;
-            font-weight: 600;
-            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.4);
         }
 
-        /* Keypad Grid with subtle white inner border lines */
+        /* Keypad Grid Layout */
         .grid-layout {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 1px;
-            background: rgba(255, 255, 255, 0.22);
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.35);
+            gap: 10px;
         }
 
-        /* Grid Buttons */
         button {
-            height: 62px;
-            border: none;
-            background: rgba(255, 255, 255, 0.05);
-            color: #8B5CF6;
+            height: 60px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.22);
+            color: #6b21a8;
             font-size: 1.3rem;
-            font-weight: 500;
+            font-weight: 600;
+            border-radius: 20px;
             cursor: pointer;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             transition: all 0.15s ease-in-out;
             outline: none;
             user-select: none;
         }
 
         button:active {
-            background: rgba(255, 255, 255, 0.25);
-            transform: scale(0.96);
+            background: rgba(255, 255, 255, 0.45);
+            transform: scale(0.95);
         }
 
-        /* Number Buttons */
-        .btn-num {
-            color: #8B5CF6;
-        }
-
-        /* Operator & Action Buttons */
-        .btn-op, .btn-action {
-            color: #9333EA;
-        }
-
-        /* Bottom-Right 'Enter' Highlighted Button */
+        /* Cyan Enter Button */
         .btn-enter {
             grid-column: span 2;
-            background: rgba(165, 243, 252, 0.7);
-            color: #0284C7;
-            font-weight: 600;
-            border-radius: 16px;
-            margin: 4px;
-            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.25);
+            background: rgba(165, 243, 252, 0.85) !important;
+            color: #0369a1 !important;
+            border: 1px solid rgba(255, 255, 255, 0.8) !important;
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3) !important;
         }
         .btn-enter:active {
-            background: rgba(165, 243, 252, 0.9);
-        }
-
-        @media (max-width: 400px) {
-            .calculator-card {
-                padding: 18px;
-                border-radius: 28px;
-            }
-            button {
-                height: 54px;
-                font-size: 1.15rem;
-            }
-            .result {
-                font-size: 2.4rem;
-            }
+            background: rgba(165, 243, 252, 1) !important;
         }
     </style>
 </head>
 <body>
 
-    <!-- Ambient 3D Glass Orbs -->
-    <div class="orb orb-top-left"></div>
-    <div class="orb orb-top-small"></div>
-    <div class="orb orb-right-pink"></div>
-    <div class="orb orb-bottom-cyan"></div>
+    <!-- Ambient Floating Orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
 
     <div class="calculator-card">
-        <!-- Top Left Window Dots -->
+        <!-- Window Control Dots -->
         <div class="window-dots">
             <div class="dot"></div>
             <div class="dot"></div>
@@ -211,30 +173,30 @@
             <div class="result" id="display">2021</div>
         </div>
 
-        <!-- Grid Keypad -->
+        <!-- Keypad -->
         <div class="grid-layout">
-            <button class="btn-action" onclick="clearDisplay()">C</button>
-            <button class="btn-action" onclick="toggleSign()">±</button>
-            <button class="btn-action" onclick="appendOperator('%')">%</button>
-            <button class="btn-op" onclick="appendOperator('/')">÷</button>
+            <button onclick="clearDisplay()">C</button>
+            <button onclick="toggleSign()">±</button>
+            <button onclick="appendOperator('%')">%</button>
+            <button onclick="appendOperator('/')">÷</button>
 
-            <button class="btn-num" onclick="appendNumber('7')">7</button>
-            <button class="btn-num" onclick="appendNumber('8')">8</button>
-            <button class="btn-num" onclick="appendNumber('9')">9</button>
-            <button class="btn-op" onclick="appendOperator('*')">×</button>
+            <button onclick="appendNumber('7')">7</button>
+            <button onclick="appendNumber('8')">8</button>
+            <button onclick="appendNumber('9')">9</button>
+            <button onclick="appendOperator('*')">×</button>
 
-            <button class="btn-num" onclick="appendNumber('4')">4</button>
-            <button class="btn-num" onclick="appendNumber('5')">5</button>
-            <button class="btn-num" onclick="appendNumber('6')">6</button>
-            <button class="btn-op" onclick="appendOperator('-')">−</button>
+            <button onclick="appendNumber('4')">4</button>
+            <button onclick="appendNumber('5')">5</button>
+            <button onclick="appendNumber('6')">6</button>
+            <button onclick="appendOperator('-')">−</button>
 
-            <button class="btn-num" onclick="appendNumber('1')">1</button>
-            <button class="btn-num" onclick="appendNumber('2')">2</button>
-            <button class="btn-num" onclick="appendNumber('3')">3</button>
-            <button class="btn-op" onclick="appendOperator('+')">+</button>
+            <button onclick="appendNumber('1')">1</button>
+            <button onclick="appendNumber('2')">2</button>
+            <button onclick="appendNumber('3')">3</button>
+            <button onclick="appendOperator('+')">+</button>
 
-            <button class="btn-num" onclick="appendNumber('.')">.</button>
-            <button class="btn-num" onclick="appendNumber('0')">0</button>
+            <button onclick="appendNumber('.')">.</button>
+            <button onclick="appendNumber('0')">0</button>
             <button class="btn-enter" onclick="calculate()">Enter</button>
         </div>
     </div>
@@ -279,7 +241,7 @@
                     .replace(/÷/g, '/')
                     .replace(/−/g, '-');
                 
-                if (isNewInput === false) {
+                if (!isNewInput) {
                     sanitizedExp += ' ' + currentInput;
                 }
 
