@@ -4,91 +4,127 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_main_gradient"
+    android:background="@drawable/bg_pastel_gradient"
     android:padding="20dp">
 
-    <!-- Glassmorphic Display Card -->
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardDisplay"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:cardBackgroundColor="@color/glass_display_bg"
-        app:cardCornerRadius="28dp"
-        app:cardElevation="0dp"
-        app:strokeColor="@color/glass_border"
-        app:strokeWidth="1.5dp"
-        app:layout_constraintHeight_percent="0.28"
+    <!-- 3D Floating Orbs -->
+    <View
+        android:id="@+id/orbTopLeft"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:background="@drawable/bg_orb_glass"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="60dp"
+        android:layout_marginStart="20dp" />
+
+    <View
+        android:id="@+id/orbRightPink"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:background="@drawable/bg_orb_pink"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="260dp"
+        android:layout_marginEnd="30dp" />
+
+    <View
+        android:id="@+id/orbBottomCyan"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:background="@drawable/bg_orb_cyan"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="70dp"
+        android:layout_marginEnd="40dp" />
+
+    <!-- Glassmorphic Main Calculator Card -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/calculatorCard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/glass_card_bg"
+        app:cardCornerRadius="32dp"
+        app:cardElevation="0dp"
+        app:strokeColor="@color/glass_card_stroke"
+        app:strokeWidth="1.5dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="bottom|end"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="24dp">
+            android:padding="20dp">
 
-            <TextView
-                android:id="@+id/tvExpression"
+            <!-- Window Control Dots -->
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=""
-                android:textColor="@color/text_secondary"
-                android:textSize="20sp" />
+                android:orientation="horizontal"
+                android:layout_marginBottom="16dp">
+
+                <View android:layout_width="8dp" android:layout_height="8dp" android:background="@drawable/bg_dot" android:layout_marginEnd="6dp"/>
+                <View android:layout_width="8dp" android:layout_height="8dp" android:background="@drawable/bg_dot" android:layout_marginEnd="6dp"/>
+                <View android:layout_width="8dp" android:layout_height="8dp" android:background="@drawable/bg_dot"/>
+            </LinearLayout>
+
+            <!-- Display Area -->
+            <TextView
+                android:id="@+id/tvExpression"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="(62 × 25) + 471"
+                android:textColor="@color/text_expression"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tvDisplay"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="0"
-                android:textColor="@color/text_primary"
-                android:textSize="48sp"
+                android:gravity="end"
+                android:text="2021"
+                android:textColor="@color/text_result"
+                android:textSize="44sp"
                 android:textStyle="bold"
-                android:maxLines="1" />
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Keypad Grid -->
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="4"
+                android:rowCount="5">
+
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/btnClear" android:text="C" style="@style/GlassBtnStyle"/>
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/btnSign" android:text="±" style="@style/GlassBtnStyle"/>
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/btnPercent" android:text="%" style="@style/GlassBtnStyle"/>
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/btnDivide" android:text="÷" style="@style/GlassBtnStyle"/>
+
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/btn7" android:text="7" style="@style/GlassBtnStyle"/>
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/btn8" android:text="8" style="@style/GlassBtnStyle"/>
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/btn9" android:text="9" style="@style/GlassBtnStyle"/>
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/btnMultiply" android:text="×" style="@style/GlassBtnStyle"/>
+
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/btn4" android:text="4" style="@style/GlassBtnStyle"/>
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/btn5" android:text="5" style="@style/GlassBtnStyle"/>
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/btn6" android:text="6" style="@style/GlassBtnStyle"/>
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/btnMinus" android:text="−" style="@style/GlassBtnStyle"/>
+
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/btn1" android:text="1" style="@style/GlassBtnStyle"/>
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/btn2" android:text="2" style="@style/GlassBtnStyle"/>
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/btn3" android:text="3" style="@style/GlassBtnStyle"/>
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/btnPlus" android:text="+" style="@style/GlassBtnStyle"/>
+
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/btnDot" android:text="." style="@style/GlassBtnStyle"/>
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/btn0" android:text="0" style="@style/GlassBtnStyle"/>
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/btnEnter" android:text="Enter" style="@style/EnterBtnStyle"/>
+            </GridLayout>
+
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
-
-    <!-- Keypad Grid -->
-    <GridLayout
-        android:id="@+id/gridLayout"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:columnCount="4"
-        android:rowCount="5"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/cardDisplay"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <!-- Row 1 -->
-        <com.google.android.material.button.MaterialButton android:id="@+id/btnClear" android:text="C" style="@style/GlassButtonAction"/>
-        <com.google.android.material.button.MaterialButton android:id="@+id/btnDelete" android:text="⌫" style="@style/GlassButtonAction"/>
-        <com.google.android.material.button.MaterialButton android:id="@+id/btnDivide" android:text="÷" style="@style/GlassButtonOp"/>
-        <com.google.android.material.button.MaterialButton android:id="@+id/btnMultiply" android:text="×" style="@style/GlassButtonOp"/>
-
-        <!-- Row 2 -->
-        <com.google.android.material.button.MaterialButton android:id="@+id/btn7" android:text="7" style="@style/GlassButtonNum"/>
-        <com.google.android.material.button.MaterialButton android:id="@+id/btn8" android:text="8" style="@style/GlassButtonNum"/>
-        <com.google.android.material.button.MaterialButton android:id="@+id/btn9" android:text="9" style="@style/GlassButtonNum"/>
-        <com.google.android.material.button.MaterialButton android:id="@+id/btnMinus" android:text="-" style="@style/GlassButtonOp"/>
-
-        <!-- Row 3 -->
-        <com.google.android.material.button.MaterialButton android:id="@+id/btn4" android:text="4" style="@style/GlassButtonNum"/>
-        <com.google.android.material.button.MaterialButton android:id="@+id/btn5" android:text="5" style="@style/GlassButtonNum"/>
-        <com.google.android.material.button.MaterialButton android:id="@+id/btn6" android:text="6" style="@style/GlassButtonNum"/>
-        <com.google.android.material.button.MaterialButton android:id="@+id/btnPlus" android:text="+" style="@style/GlassButtonOp"/>
-
-        <!-- Row 4 -->
-        <com.google.android.material.button.MaterialButton android:id="@+id/btn1" android:text="1" style="@style/GlassButtonNum"/>
-        <com.google.android.material.button.MaterialButton android:id="@+id/btn2" android:text="2" style="@style/GlassButtonNum"/>
-        <com.google.android.material.button.MaterialButton android:id="@+id/btn3" android:text="3" style="@style/GlassButtonNum"/>
-        <com.google.android.material.button.MaterialButton android:id="@+id/btnEquals" android:text="=" style="@style/GlassButtonEquals"/>
-
-        <!-- Row 5 -->
-        <com.google.android.material.button.MaterialButton android:id="@+id/btn0" android:text="0" style="@style/GlassButtonNum"/>
-        <com.google.android.material.button.MaterialButton android:id="@+id/btnDot" android:text="." style="@style/GlassButtonNum"/>
-    </GridLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
