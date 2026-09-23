@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Background Colors -->
-    <color name="bg_main">#0F0F1A</color>
-    <color name="display_bg">#181828</color>
-    
+    <!-- Background Gradient Colors -->
+    <color name="bg_gradient_start">#0F172A</color>
+    <color name="bg_gradient_center">#31103F</color>
+    <color name="bg_gradient_end">#1E1B4B</color>
+
+    <!-- Glass Fill & Border Colors -->
+    <color name="glass_card_bg">#1AFFFFFF</color> <!-- ~10% White Translucency -->
+    <color name="glass_display_bg">#26FFFFFF</color> <!-- ~15% White Translucency -->
+    <color name="glass_border">#33FFFFFF</color> <!-- ~20% White Stroke -->
+
     <!-- Text Colors -->
     <color name="text_primary">#FFFFFF</color>
-    <color name="text_secondary">#8E8EA9</color>
-    
-    <!-- Aesthetic Button Colors -->
-    <color name="btn_number_bg">#212135</color>
-    <color name="btn_operator_bg">#2D2B4A</color>
-    <color name="btn_operator_text">#A78BFA</color>
-    <color name="btn_action_bg">#342D45</color>
-    <color name="btn_action_text">#FF7597</color>
-    <color name="btn_equals_bg">#7C3AED</color>
-</resources>
+    <color name="text_secondary">#CBD5E1</color>
 
+    <!-- Glass Button Colors -->
+    <color name="btn_glass_num">#1AFFFFFF</color>
+    <color name="btn_glass_op">#33A78BFA</color> <!-- Translucent Purple -->
+    <color name="btn_glass_action">#33FF7597</color> <!-- Translucent Pink -->
+    <color name="btn_glass_equals">#997C3AED</color> <!-- Glowing Accent Purple -->
+    <color name="btn_op_text">#C4B5FD</color>
+    <color name="btn_action_text">#FCA5A5</color>
+</resources>
