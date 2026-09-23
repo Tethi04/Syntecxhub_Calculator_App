@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Glassmorphic Calculator | Syntecxhub</title>
+    <title>Pastel Glass Calculator | Syntecxhub</title>
     <style>
         * {
             box-sizing: border-box;
@@ -13,7 +13,8 @@
         }
 
         body {
-            background: linear-gradient(135deg, #0F172A 0%, #31103F 50%, #1E1B4B 100%);
+            /* Pastel Cyan-Pink-Purple Fluid Mesh Gradient */
+            background: linear-gradient(135deg, #a5f3fc 0%, #c084fc 45%, #f472b6 75%, #bae6fd 100%);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -23,291 +24,287 @@
             overflow: hidden;
         }
 
-        /* Glowing Ambient Orbs behind glass for maximum blur effect */
+        /* 3D Floating Orbs & Shapes matching the photo */
         .orb {
             position: absolute;
             border-radius: 50%;
-            filter: blur(90px);
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: inset 2px 2px 8px rgba(255, 255, 255, 0.8), 0 10px 20px rgba(0, 0, 0, 0.05);
             z-index: 1;
         }
-        .orb-1 {
-            width: 280px;
-            height: 280px;
-            background: rgba(167, 139, 250, 0.45);
-            top: 10%;
-            left: 20%;
+        .orb-top-left {
+            width: 160px;
+            height: 160px;
+            top: 15%;
+            left: 22%;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.8), rgba(192, 132, 252, 0.2));
         }
-        .orb-2 {
-            width: 260px;
-            height: 260px;
-            background: rgba(244, 114, 182, 0.35);
-            bottom: 10%;
-            right: 20%;
+        .orb-top-small {
+            width: 80px;
+            height: 80px;
+            top: 18%;
+            left: 36%;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(165, 243, 252, 0.3));
+        }
+        .orb-right-pink {
+            width: 70px;
+            height: 70px;
+            top: 36%;
+            right: 22%;
+            background: radial-gradient(circle at 30% 30%, #f472b6, #e11d48);
+            box-shadow: 0 10px 25px rgba(244, 114, 182, 0.4);
+        }
+        .orb-bottom-cyan {
+            width: 120px;
+            height: 120px;
+            bottom: 18%;
+            right: 24%;
+            background: radial-gradient(circle at 30% 30%, rgba(165, 243, 252, 0.9), rgba(56, 189, 248, 0.4));
         }
 
-        /* Glassmorphic Container Card */
+        /* Glassmorphic Calculator Outer Card */
         .calculator-card {
             position: relative;
             z-index: 2;
-            background: rgba(255, 255, 255, 0.06);
-            backdrop-filter: blur(24px) saturate(180%);
-            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            background: rgba(255, 255, 255, 0.28);
+            backdrop-filter: blur(30px) saturate(160%);
+            -webkit-backdrop-filter: blur(30px) saturate(160%);
             width: 100%;
-            max-width: 380px;
+            max-width: 360px;
             padding: 24px;
-            border-radius: 32px;
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            border-radius: 36px;
+            border: 1.5dp solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.06), inset 0 1px 2px rgba(255, 255, 255, 0.6);
         }
 
-        /* Glass Display Container */
-        .display-container {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 24px;
-            padding: 24px;
-            text-align: right;
+        /* Window Dots (...) on Top-Left */
+        .window-dots {
+            display: flex;
+            gap: 6px;
             margin-bottom: 20px;
-            min-height: 130px;
+        }
+        .dot {
+            width: 8px;
+            height: 8px;
+            background-color: rgba(255, 255, 255, 0.85);
+            border-radius: 50%;
+        }
+
+        /* Display Container */
+        .display-container {
+            text-align: right;
+            padding: 10px 8px 24px 8px;
+            min-height: 110px;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
             word-wrap: break-word;
             word-break: break-all;
-            box-shadow: inset 0 2px 4px 0 rgba(255, 255, 255, 0.05);
         }
 
         .expression {
-            color: #CBD5E1;
-            font-size: 1.1rem;
-            min-height: 24px;
-            margin-bottom: 6px;
+            color: #9061F9;
+            font-size: 1.25rem;
+            font-weight: 500;
+            min-height: 28px;
+            margin-bottom: 4px;
+            letter-spacing: 0.5px;
         }
 
         .result {
             color: #FFFFFF;
-            font-size: 2.6rem;
-            font-weight: bold;
-            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.2);
+            font-size: 3rem;
+            font-weight: 600;
+            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
         }
 
+        /* Keypad Grid with subtle white inner border lines */
         .grid-layout {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
+            gap: 1px;
+            background: rgba(255, 255, 255, 0.22);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.35);
         }
 
-        /* Glassmorphic Buttons */
+        /* Grid Buttons */
         button {
-            height: 68px;
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            border-radius: 20px;
-            font-size: 1.35rem;
-            font-weight: bold;
+            height: 62px;
+            border: none;
+            background: rgba(255, 255, 255, 0.05);
+            color: #8B5CF6;
+            font-size: 1.3rem;
+            font-weight: 500;
             cursor: pointer;
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.15s ease-in-out;
             outline: none;
             user-select: none;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
         }
 
         button:active {
-            transform: scale(0.92);
+            background: rgba(255, 255, 255, 0.25);
+            transform: scale(0.96);
         }
 
         /* Number Buttons */
         .btn-num {
-            background: rgba(255, 255, 255, 0.08);
-            color: #FFFFFF;
-        }
-        .btn-num:hover {
-            background: rgba(255, 255, 255, 0.16);
-            border-color: rgba(255, 255, 255, 0.3);
+            color: #8B5CF6;
         }
 
-        /* Operator Buttons (+, -, ×, ÷) */
-        .btn-op {
-            background: rgba(167, 139, 250, 0.2);
-            color: #C4B5FD;
-        }
-        .btn-op:hover {
-            background: rgba(167, 139, 250, 0.35);
-            color: #FFFFFF;
+        /* Operator & Action Buttons */
+        .btn-op, .btn-action {
+            color: #9333EA;
         }
 
-        /* Action Buttons (C, ⌫) */
-        .btn-action {
-            background: rgba(255, 117, 151, 0.2);
-            color: #FCA5A5;
-        }
-        .btn-action:hover {
-            background: rgba(255, 117, 151, 0.35);
-            color: #FFFFFF;
-        }
-
-        /* Equals Accent Button */
-        .btn-equals {
-            background: rgba(124, 58, 237, 0.75);
-            color: #FFFFFF;
-            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
-        }
-        .btn-equals:hover {
-            background: rgba(124, 58, 237, 0.9);
-            box-shadow: 0 6px 24px rgba(124, 58, 237, 0.6);
-        }
-
-        /* Zero button spans 2 columns */
-        .btn-zero {
+        /* Bottom-Right 'Enter' Highlighted Button */
+        .btn-enter {
             grid-column: span 2;
+            background: rgba(165, 243, 252, 0.7);
+            color: #0284C7;
+            font-weight: 600;
+            border-radius: 16px;
+            margin: 4px;
+            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.25);
+        }
+        .btn-enter:active {
+            background: rgba(165, 243, 252, 0.9);
         }
 
-        /* Media queries for smaller mobile screens */
         @media (max-width: 400px) {
             .calculator-card {
-                padding: 16px;
-                border-radius: 24px;
+                padding: 18px;
+                border-radius: 28px;
             }
             button {
-                height: 58px;
-                font-size: 1.2rem;
+                height: 54px;
+                font-size: 1.15rem;
             }
             .result {
-                font-size: 2.2rem;
+                font-size: 2.4rem;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Ambient background light orbs for glass effect -->
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
+    <!-- Ambient 3D Glass Orbs -->
+    <div class="orb orb-top-left"></div>
+    <div class="orb orb-top-small"></div>
+    <div class="orb orb-right-pink"></div>
+    <div class="orb orb-bottom-cyan"></div>
 
     <div class="calculator-card">
-        <div class="display-container">
-            <div class="expression" id="expression"></div>
-            <div class="result" id="display">0</div>
+        <!-- Top Left Window Dots -->
+        <div class="window-dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
         </div>
 
+        <!-- Output Display -->
+        <div class="display-container">
+            <div class="expression" id="expression">(62 × 25) + 471</div>
+            <div class="result" id="display">2021</div>
+        </div>
+
+        <!-- Grid Keypad -->
         <div class="grid-layout">
             <button class="btn-action" onclick="clearDisplay()">C</button>
-            <button class="btn-action" onclick="deleteChar()">⌫</button>
+            <button class="btn-action" onclick="toggleSign()">±</button>
+            <button class="btn-action" onclick="appendOperator('%')">%</button>
             <button class="btn-op" onclick="appendOperator('/')">÷</button>
-            <button class="btn-op" onclick="appendOperator('*')">×</button>
 
             <button class="btn-num" onclick="appendNumber('7')">7</button>
             <button class="btn-num" onclick="appendNumber('8')">8</button>
             <button class="btn-num" onclick="appendNumber('9')">9</button>
-            <button class="btn-op" onclick="appendOperator('-')">-</button>
+            <button class="btn-op" onclick="appendOperator('*')">×</button>
 
             <button class="btn-num" onclick="appendNumber('4')">4</button>
             <button class="btn-num" onclick="appendNumber('5')">5</button>
             <button class="btn-num" onclick="appendNumber('6')">6</button>
-            <button class="btn-op" onclick="appendOperator('+')">+</button>
+            <button class="btn-op" onclick="appendOperator('-')">−</button>
 
             <button class="btn-num" onclick="appendNumber('1')">1</button>
             <button class="btn-num" onclick="appendNumber('2')">2</button>
             <button class="btn-num" onclick="appendNumber('3')">3</button>
-            <button class="btn-equals" onclick="calculate()">=</button>
+            <button class="btn-op" onclick="appendOperator('+')">+</button>
 
-            <button class="btn-num btn-zero" onclick="appendNumber('0')">0</button>
             <button class="btn-num" onclick="appendNumber('.')">.</button>
+            <button class="btn-num" onclick="appendNumber('0')">0</button>
+            <button class="btn-enter" onclick="calculate()">Enter</button>
         </div>
     </div>
 
     <script>
-        let currentInput = '';
-        let operator = '';
-        let firstOperand = null;
-        let waitingForSecondOperand = false;
+        let currentInput = '2021';
+        let expressionText = '(62 × 25) + 471';
+        let isNewInput = true;
 
         const display = document.getElementById('display');
         const expression = document.getElementById('expression');
 
         function appendNumber(num) {
-            if (waitingForSecondOperand) {
+            if (isNewInput) {
                 currentInput = num;
-                waitingForSecondOperand = false;
+                isNewInput = false;
             } else {
                 if (num === '.' && currentInput.includes('.')) return;
-                currentInput = currentInput === '0' && num !== '.' ? num : currentInput + num;
+                currentInput += num;
             }
             updateDisplay();
         }
 
         function appendOperator(op) {
             const displayOp = op === '*' ? '×' : op === '/' ? '÷' : op;
-            
-            if (firstOperand === null) {
-                firstOperand = parseFloat(currentInput || '0');
-            } else if (operator && !waitingForSecondOperand) {
-                const result = performCalculation();
-                firstOperand = result;
-                currentInput = String(result);
+            expressionText = `${currentInput} ${displayOp}`;
+            expression.innerText = expressionText;
+            isNewInput = true;
+        }
+
+        function toggleSign() {
+            if (currentInput !== '0') {
+                currentInput = currentInput.startsWith('-') ? currentInput.slice(1) : '-' + currentInput;
+                updateDisplay();
             }
-            
-            operator = op;
-            waitingForSecondOperand = true;
-            expression.innerText = `${firstOperand} ${displayOp}`;
-            updateDisplay();
         }
 
         function calculate() {
-            if (firstOperand === null || operator === '') return;
+            try {
+                let sanitizedExp = expressionText
+                    .replace(/×/g, '*')
+                    .replace(/÷/g, '/')
+                    .replace(/−/g, '-');
+                
+                if (isNewInput === false) {
+                    sanitizedExp += ' ' + currentInput;
+                }
 
-            const secondOperand = parseFloat(currentInput);
-            expression.innerText = `${firstOperand} ${operator === '*' ? '×' : operator === '/' ? '÷' : operator} ${secondOperand} =`;
-            
-            const result = performCalculation();
-            if (result === 'Cannot divide by 0') {
-                display.innerText = result;
-            } else {
-                display.innerText = result;
-                currentInput = String(result);
+                let result = eval(sanitizedExp);
+                expression.innerText = sanitizedExp + ' =';
+                currentInput = String(Number.isInteger(result) ? result : parseFloat(result.toFixed(4)));
+                updateDisplay();
+                isNewInput = true;
+            } catch (e) {
+                currentInput = 'Error';
+                updateDisplay();
+                isNewInput = true;
             }
-
-            firstOperand = null;
-            operator = '';
-            waitingForSecondOperand = false;
-        }
-
-        function performCalculation() {
-            const secondOperand = parseFloat(currentInput);
-            if (operator === '/' && secondOperand === 0) {
-                return 'Cannot divide by 0';
-            }
-            
-            let res = 0;
-            switch (operator) {
-                case '+': res = firstOperand + secondOperand; break;
-                case '-': res = firstOperand - secondOperand; break;
-                case '*': res = firstOperand * secondOperand; break;
-                case '/': res = firstOperand / secondOperand; break;
-            }
-            return Number.isInteger(res) ? res : parseFloat(res.toFixed(4));
         }
 
         function clearDisplay() {
             currentInput = '0';
-            firstOperand = null;
-            operator = '';
-            waitingForSecondOperand = false;
+            expressionText = '';
             expression.innerText = '';
-            updateDisplay();
-        }
-
-        function deleteChar() {
-            if (currentInput.length > 1) {
-                currentInput = currentInput.slice(0, -1);
-            } else {
-                currentInput = '0';
-            }
+            isNewInput = true;
             updateDisplay();
         }
 
         function updateDisplay() {
-            display.innerText = currentInput || '0';
+            display.innerText = currentInput;
         }
     </script>
 </body>
