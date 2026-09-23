@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Background Colors -->
+    <color name="bg_main">#0F0F1A</color>
+    <color name="display_bg">#181828</color>
+    
+    <!-- Text Colors -->
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#8E8EA9</color>
+    
+    <!-- Aesthetic Button Colors -->
+    <color name="btn_number_bg">#212135</color>
+    <color name="btn_operator_bg">#2D2B4A</color>
+    <color name="btn_operator_text">#A78BFA</color>
+    <color name="btn_action_bg">#342D45</color>
+    <color name="btn_action_text">#FF7597</color>
+    <color name="btn_equals_bg">#7C3AED</color>
+</resources>
+
