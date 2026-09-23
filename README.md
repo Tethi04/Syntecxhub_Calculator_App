@@ -11,7 +11,7 @@
   <br />
 
   <!-- App Screenshot Preview -->
-<img width="1079" height="2047" alt="Image" src="https://github.com/user-attachments/assets/a92cd932-85a4-433d-b97b-959409eca7c1" alt="Pastel Glassmorphic Calculator Preview" width="320" style="border-radius: 24px; box-shadow: 0 15px 35px rgba(0,0,0,0.15);" />
+<img width="1079" height="2047" alt="Image" src="https://github.com/user-attachments/assets/a92cd932-85a4-433d-b97b-959409eca7c1" />
 </div>
 
 ---
@@ -97,8 +97,6 @@ Syntecxhub_Calculator_App/
 │
 ├── docs/                                 # GitHub Pages Deployment Directory
 │   └── index.html                        # Self-contained Web Edition (HTML + CSS + JS)
-│
-├── preview.png                           # Screenshot preview for documentation
 └── README.md                             # Project documentation file
 ```
 
