@@ -1,4 +1,4 @@
-package com.syntecxhub.calculator
+package com.example.pastelglasscalculator
 
 import android.os.Bundle
 import android.widget.Button
@@ -9,8 +9,10 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var tvDisplay: TextView
     private lateinit var tvExpression: TextView
-    private val calculator = CalculatorEngine()
-    private var currentInput = StringBuilder()
+
+    private var currentInput = "0"
+    private var expressionText = ""
+    private var isNewInput = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,63 +21,82 @@ class MainActivity : AppCompatActivity() {
         tvDisplay = findViewById(R.id.tvDisplay)
         tvExpression = findViewById(R.id.tvExpression)
 
-        setupButtonListeners()
+        setupNumberButtons()
+        setupOperatorButtons()
     }
 
-    private fun setupButtonListeners() {
-        val numberButtons = listOf(
-            R.id.btn0, R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4,
-            R.id.btn5, R.id.btn6, R.id.btn7, R.id.btn8, R.id.btn9, R.id.btnDot
+    private fun setupNumberButtons() {
+        val numberButtons = mapOf(
+            R.id.btn0 to "0", R.id.btn1 to "1", R.id.btn2 to "2",
+            R.id.btn3 to "3", R.id.btn4 to "4", R.id.btn5 to "5",
+            R.id.btn6 to "6", R.id.btn7 to "7", R.id.btn8 to "8",
+            R.id.btn9 to "9", R.id.btnDot to "."
         )
 
-        for (id in numberButtons) {
-            findViewById<Button>(id).setOnClickListener { button ->
-                currentInput.append((button as Button).text)
-                tvDisplay.text = currentInput.toString()
-            }
-        }
-
-        val operatorButtons = mapOf(
-            R.id.btnPlus to " + ",
-            R.id.btnMinus to " - ",
-            R.id.btnMultiply to " × ",
-            R.id.btnDivide to " ÷ "
-        )
-
-        for ((id, op) in operatorButtons) {
+        for ((id, value) in numberButtons) {
             findViewById<Button>(id).setOnClickListener {
-                if (currentInput.isNotEmpty() && !currentInput.endsWith(" ")) {
-                    currentInput.append(op)
-                    tvDisplay.text = currentInput.toString()
+                if (isNewInput) {
+                    currentInput = if (value == ".") "0." else value
+                    isNewInput = false
+                } else {
+                    if (value == "." && currentInput.contains(".")) return@setOnClickListener
+                    currentInput += value
                 }
+                tvDisplay.text = currentInput
             }
         }
+    }
 
+    private fun setupOperatorButtons() {
         findViewById<Button>(R.id.btnClear).setOnClickListener {
-            currentInput.clear()
+            currentInput = "0"
+            expressionText = ""
+            isNewInput = true
             tvDisplay.text = "0"
             tvExpression.text = ""
         }
 
-        findViewById<Button>(R.id.btnDelete).setOnClickListener {
-            if (currentInput.isNotEmpty()) {
-                currentInput.deleteCharAt(currentInput.length - 1)
-                tvDisplay.text = if (currentInput.isEmpty()) "0" else currentInput.toString()
+        findViewById<Button>(R.id.btnSign).setOnClickListener {
+            if (currentInput != "0") {
+                currentInput = if (currentInput.startsWith("-")) currentInput.substring(1) else "-$currentInput"
+                tvDisplay.text = currentInput
             }
         }
 
-        findViewById<Button>(R.id.btnEquals).setOnClickListener {
-            if (currentInput.isNotEmpty()) {
-                val expression = currentInput.toString()
-                val result = calculator.evaluate(expression)
-                
-                tvExpression.text = expression
-                tvDisplay.text = result
-                
-                currentInput.clear()
-                if (result != "Error" && !result.contains("Cannot")) {
-                    currentInput.append(result)
+        val operators = mapOf(
+            R.id.btnPlus to "+", R.id.btnMinus to "−",
+            R.id.btnMultiply to "×", R.id.btnDivide to "÷"
+        )
+
+        for ((id, op) in operators) {
+            findViewById<Button>(id).setOnClickListener {
+                expressionText = "$currentInput $op"
+                tvExpression.text = expressionText
+                isNewInput = true
+            }
+        }
+
+        findViewById<Button>(R.id.btnEnter).setOnClickListener {
+            try {
+                val num1 = expressionText.split(" ")[0].toDoubleOrNull() ?: 0.0
+                val op = expressionText.split(" ").getOrNull(1) ?: ""
+                val num2 = currentInput.toDoubleOrNull() ?: 0.0
+
+                val result = when (op) {
+                    "+" -> num1 + num2
+                    "−" -> num1 - num2
+                    "×" -> num1 * num2
+                    "÷" -> if (num2 != 0.0) num1 / num2 else Double.NaN
+                    else -> num2
                 }
+
+                tvExpression.text = "$expressionText $currentInput ="
+                currentInput = if (result % 1.0 == 0.0) result.toLong().toString() else result.toString()
+                tvDisplay.text = currentInput
+                isNewInput = true
+            } catch (e: Exception) {
+                tvDisplay.text = "Error"
+                isNewInput = true
             }
         }
     }
