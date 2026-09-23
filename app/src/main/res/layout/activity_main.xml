@@ -4,17 +4,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_main"
+    android:background="@drawable/bg_main_gradient"
     android:padding="20dp">
 
-    <!-- Screen Output Display Container -->
-    <androidx.cardview.widget.CardView
+    <!-- Glassmorphic Display Card -->
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardDisplay"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:cardBackgroundColor="@color/display_bg"
+        app:cardBackgroundColor="@color/glass_display_bg"
         app:cardCornerRadius="28dp"
         app:cardElevation="0dp"
+        app:strokeColor="@color/glass_border"
+        app:strokeWidth="1.5dp"
         app:layout_constraintHeight_percent="0.28"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +47,7 @@
                 android:textStyle="bold"
                 android:maxLines="1" />
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
     <!-- Keypad Grid -->
     <GridLayout
@@ -61,33 +63,32 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <!-- Row 1 -->
-        <com.google.android.material.button.MaterialButton android:id="@+id/btnClear" android:text="C" style="@style/AestheticButtonAction"/>
-        <com.google.android.material.button.MaterialButton android:id="@+id/btnDelete" android:text="⌫" style="@style/AestheticButtonAction"/>
-        <com.google.android.material.button.MaterialButton android:id="@+id/btnDivide" android:text="÷" style="@style/AestheticButtonOp"/>
-        <com.google.android.material.button.MaterialButton android:id="@+id/btnMultiply" android:text="×" style="@style/AestheticButtonOp"/>
+        <com.google.android.material.button.MaterialButton android:id="@+id/btnClear" android:text="C" style="@style/GlassButtonAction"/>
+        <com.google.android.material.button.MaterialButton android:id="@+id/btnDelete" android:text="⌫" style="@style/GlassButtonAction"/>
+        <com.google.android.material.button.MaterialButton android:id="@+id/btnDivide" android:text="÷" style="@style/GlassButtonOp"/>
+        <com.google.android.material.button.MaterialButton android:id="@+id/btnMultiply" android:text="×" style="@style/GlassButtonOp"/>
 
         <!-- Row 2 -->
-        <com.google.android.material.button.MaterialButton android:id="@+id/btn7" android:text="7" style="@style/AestheticButtonNum"/>
-        <com.google.android.material.button.MaterialButton android:id="@+id/btn8" android:text="8" style="@style/AestheticButtonNum"/>
-        <com.google.android.material.button.MaterialButton android:id="@+id/btn9" android:text="9" style="@style/AestheticButtonNum"/>
-        <com.google.android.material.button.MaterialButton android:id="@+id/btnMinus" android:text="-" style="@style/AestheticButtonOp"/>
+        <com.google.android.material.button.MaterialButton android:id="@+id/btn7" android:text="7" style="@style/GlassButtonNum"/>
+        <com.google.android.material.button.MaterialButton android:id="@+id/btn8" android:text="8" style="@style/GlassButtonNum"/>
+        <com.google.android.material.button.MaterialButton android:id="@+id/btn9" android:text="9" style="@style/GlassButtonNum"/>
+        <com.google.android.material.button.MaterialButton android:id="@+id/btnMinus" android:text="-" style="@style/GlassButtonOp"/>
 
         <!-- Row 3 -->
-        <com.google.android.material.button.MaterialButton android:id="@+id/btn4" android:text="4" style="@style/AestheticButtonNum"/>
-        <com.google.android.material.button.MaterialButton android:id="@+id/btn5" android:text="5" style="@style/AestheticButtonNum"/>
-        <com.google.android.material.button.MaterialButton android:id="@+id/btn6" android:text="6" style="@style/AestheticButtonNum"/>
-        <com.google.android.material.button.MaterialButton android:id="@+id/btnPlus" android:text="+" style="@style/AestheticButtonOp"/>
+        <com.google.android.material.button.MaterialButton android:id="@+id/btn4" android:text="4" style="@style/GlassButtonNum"/>
+        <com.google.android.material.button.MaterialButton android:id="@+id/btn5" android:text="5" style="@style/GlassButtonNum"/>
+        <com.google.android.material.button.MaterialButton android:id="@+id/btn6" android:text="6" style="@style/GlassButtonNum"/>
+        <com.google.android.material.button.MaterialButton android:id="@+id/btnPlus" android:text="+" style="@style/GlassButtonOp"/>
 
         <!-- Row 4 -->
-        <com.google.android.material.button.MaterialButton android:id="@+id/btn1" android:text="1" style="@style/AestheticButtonNum"/>
-        <com.google.android.material.button.MaterialButton android:id="@+id/btn2" android:text="2" style="@style/AestheticButtonNum"/>
-        <com.google.android.material.button.MaterialButton android:id="@+id/btn3" android:text="3" style="@style/AestheticButtonNum"/>
-        <com.google.android.material.button.MaterialButton android:id="@+id/btnEquals" android:text="=" style="@style/AestheticButtonEquals"/>
+        <com.google.android.material.button.MaterialButton android:id="@+id/btn1" android:text="1" style="@style/GlassButtonNum"/>
+        <com.google.android.material.button.MaterialButton android:id="@+id/btn2" android:text="2" style="@style/GlassButtonNum"/>
+        <com.google.android.material.button.MaterialButton android:id="@+id/btn3" android:text="3" style="@style/GlassButtonNum"/>
+        <com.google.android.material.button.MaterialButton android:id="@+id/btnEquals" android:text="=" style="@style/GlassButtonEquals"/>
 
         <!-- Row 5 -->
-        <com.google.android.material.button.MaterialButton android:id="@+id/btn0" android:text="0" style="@style/AestheticButtonNum"/>
-        <com.google.android.material.button.MaterialButton android:id="@+id/btnDot" android:text="." style="@style/AestheticButtonNum"/>
+        <com.google.android.material.button.MaterialButton android:id="@+id/btn0" android:text="0" style="@style/GlassButtonNum"/>
+        <com.google.android.material.button.MaterialButton android:id="@+id/btnDot" android:text="." style="@style/GlassButtonNum"/>
     </GridLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
