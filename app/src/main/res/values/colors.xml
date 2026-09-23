@@ -1,24 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Background Gradient Colors -->
-    <color name="bg_gradient_start">#0F172A</color>
-    <color name="bg_gradient_center">#31103F</color>
-    <color name="bg_gradient_end">#1E1B4B</color>
+    <color name="gradient_start">#A5F3FC</color>
+    <color name="gradient_center">#C084FC</color>
+    <color name="gradient_end">#F472B6</color>
 
-    <!-- Glass Fill & Border Colors -->
-    <color name="glass_card_bg">#1AFFFFFF</color> <!-- ~10% White Translucency -->
-    <color name="glass_display_bg">#26FFFFFF</color> <!-- ~15% White Translucency -->
-    <color name="glass_border">#33FFFFFF</color> <!-- ~20% White Stroke -->
+    <!-- Orb Colors -->
+    <color name="orb_pink_start">#F472B6</color>
+    <color name="orb_pink_end">#E11D48</color>
+    <color name="orb_cyan_start">#A5F3FC</color>
+    <color name="orb_cyan_end">#38BDF8</color>
 
-    <!-- Text Colors -->
-    <color name="text_primary">#FFFFFF</color>
-    <color name="text_secondary">#CBD5E1</color>
+    <!-- Glass Components -->
+    <color name="glass_card_bg">#52FFFFFF</color>
+    <color name="glass_card_stroke">#A6FFFFFF</color>
+    <color name="glass_button_bg">#38FFFFFF</color>
+    <color name="glass_button_stroke">#80FFFFFF</color>
 
-    <!-- Glass Button Colors -->
-    <color name="btn_glass_num">#1AFFFFFF</color>
-    <color name="btn_glass_op">#33A78BFA</color> <!-- Translucent Purple -->
-    <color name="btn_glass_action">#33FF7597</color> <!-- Translucent Pink -->
-    <color name="btn_glass_equals">#997C3AED</color> <!-- Glowing Accent Purple -->
-    <color name="btn_op_text">#C4B5FD</color>
-    <color name="btn_action_text">#FCA5A5</color>
+    <!-- Enter Button Accent -->
+    <color name="btn_enter_bg">#D9A5F3FC</color>
+    <color name="btn_enter_text">#0369A1</color>
+    <color name="btn_enter_stroke">#CCFFFFFF</color>
+
+    <!-- Typography -->
+    <color name="text_expression">#7E22CE</color>
+    <color name="text_result">#FFFFFF</color>
+    <color name="btn_text_purple">#6B21A8</color>
 </resources>
