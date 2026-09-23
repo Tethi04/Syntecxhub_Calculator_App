@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.CalculatorApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:statusBarColor">@color/bg_main</item>
+    </style>
+
+    <!-- Number Button Base Style -->
+    <style name="AestheticButtonNum">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_columnWeight">1</item>
+        <item name="android:layout_rowWeight">1</item>
+        <item name="android:layout_margin">6dp</item>
+        <item name="android:backgroundTint">@color/btn_number_bg</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="cornerRadius">20dp</item>
+    </style>
+
+    <!-- Operator Button Style (+, -, ×, ÷) -->
+    <style name="AestheticButtonOp" parent="AestheticButtonNum">
+        <item name="android:backgroundTint">@color/btn_operator_bg</item>
+        <item name="android:textColor">@color/btn_operator_text</item>
+    </style>
+
+    <!-- Special Action Button Style (Clear, Delete) -->
+    <style name="AestheticButtonAction" parent="AestheticButtonNum">
+        <item name="android:backgroundTint">@color/btn_action_bg</item>
+        <item name="android:textColor">@color/btn_action_text</item>
+    </style>
+
+    <!-- Equals Button Style -->
+    <style name="AestheticButtonEquals" parent="AestheticButtonNum">
+        <item name="android:backgroundTint">@color/btn_equals_bg</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+</resources>
+
