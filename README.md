@@ -70,34 +70,54 @@ Here is an exact breakdown of every file in this repository and its role:
 ```text
 Syntecxhub_Calculator_App/
 │
-├── app/                                  # Android Native Application Folder
+├── app/                                  # Android Native Application Module
 │   ├── src/
 │   │   └── main/
-│   │       ├── java/com/example/pastelglasscalculator/
-│   │       │   └── MainActivity.kt    # Kotlin logic for UI interaction & calculation
+│   │       ├── java/
+│   │       │   └── com/
+│   │       │       └── syntexhub/
+│   │       │           └── calculator/
+│   │       │               ├── CalculatorEngine.kt  # Core calculation logic
+│   │       │               └── MainActivity.kt      # Main UI controller & events
 │   │       │
-│   │       └── res/                   # Android Resources (Layouts, Styles, Vectors)
-│   │           ├── drawable/          # Custom XML Graphics & Glass Shapes
-│   │           │   ├── bg_pastel_gradient.xml # Main background gradient
-│   │           │   ├── bg_orb_glass.xml       # Top-left frosted glass orb
-│   │           │   ├── bg_orb_pink.xml        # Accent pink orb shape
-│   │           │   ├── bg_orb_cyan.xml        # Bottom-right cyan orb shape
-│   │           │   ├── bg_glass_button.xml    # Regular glass button layout
-│   │           │   ├── bg_enter_button.xml    # Highlighted Cyan Enter key layout
-│   │           │   └── bg_dot.xml             # Top-left window control dots
-│   │           │
-│   │           ├── layout/
-│   │           │   └── activity_main.xml  # Main UI layout structure
-│   │           │
-│   │           └── values/
-│   │               ├── colors.xml         # All color palette hex codes
-│   │               └── styles.xml         # Reusable button & typography styles
+│   │       ├── res/                      # Android UI Resources
+│   │       │   ├── drawable/             # Custom glass vectors & shapes
+│   │       │   │   ├── bg_dot.xml
+│   │       │   │   ├── bg_enter_button.xml
+│   │       │   │   ├── bg_glass_button.xml
+│   │       │   │   ├── bg_orb_cyan.xml
+│   │       │   │   ├── bg_orb_glass.xml
+│   │       │   │   ├── bg_orb_pink.xml
+│   │       │   │   └── bg_pastel_gradient.xml
+│   │       │   │
+│   │       │   ├── layout/
+│   │       │   │   └── activity_main.xml # Main calculator XML layout
+│   │       │   │
+│   │       │   └── values/
+│   │       │       ├── colors.xml        # Color hex codes
+│   │       │       ├── strings.xml       # App string resources
+│   │       │       └── styles.xml        # Glass & theme styles
+│   │       │
+│   │       └── AndroidManifest.xml       # App components & theme declaration
 │   │
-│   └── build.gradle                      # Android build configuration script
+│   └── build.gradle                      # App-level build configuration
 │
-├── docs/                                 # GitHub Pages Deployment Directory
-│   └── index.html                        # Self-contained Web Edition (HTML + CSS + JS)
-└── README.md                             # Project documentation file
+├── docs/                                 # Web Edition (GitHub Pages Deployment)
+│   ├── index.html                        # Web layout structure
+│   ├── script.js                         # Web calculator interactivity & logic
+│   └── style.css                         # Glassmorphism styling & gradients
+│
+├── gradle/
+│   └── wrapper/
+│       └── gradle-wrapper.properties     # Gradle distribution configuration
+│
+├── .gitignore                            # Git ignore configuration
+├── README.md                             # Project documentation
+├── build.gradle                          # Top-level project build script
+├── gradlew                               # Gradle wrapper script for Unix
+├── gradlew.bat                           # Gradle wrapper script for Windows
+└── settings.gradle                       # Gradle project settings
+
 ```
 
 ---
