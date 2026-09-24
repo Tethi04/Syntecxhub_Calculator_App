@@ -1,0 +1,145 @@
+  * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            /* Bright Pastel Mesh Gradient */
+            background: linear-gradient(135deg, #a5f3fc 0%, #c084fc 45%, #f472b6 80%, #bae6fd 100%) !important;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 3D Floating Glass Orbs */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: inset 2px 2px 8px rgba(255, 255, 255, 0.8), 0 10px 20px rgba(0, 0, 0, 0.05);
+            z-index: 1;
+        }
+        .orb-1 {
+            width: 150px;
+            height: 150px;
+            top: 10%;
+            left: 15%;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(192, 132, 252, 0.3));
+        }
+        .orb-2 {
+            width: 75px;
+            height: 75px;
+            top: 35%;
+            right: 12%;
+            background: radial-gradient(circle at 30% 30%, #f472b6, #e11d48);
+            box-shadow: 0 10px 25px rgba(244, 114, 182, 0.4);
+        }
+        .orb-3 {
+            width: 120px;
+            height: 120px;
+            bottom: 12%;
+            right: 18%;
+            background: radial-gradient(circle at 30% 30%, rgba(165, 243, 252, 0.9), rgba(56, 189, 248, 0.4));
+        }
+
+        /* Glassmorphic Main Card */
+        .calculator-card {
+            position: relative;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.32) !important;
+            backdrop-filter: blur(30px) saturate(160%);
+            -webkit-backdrop-filter: blur(30px) saturate(160%);
+            width: 100%;
+            max-width: 350px;
+            padding: 24px;
+            border-radius: 36px;
+            border: 1.5px solid rgba(255, 255, 255, 0.6) !important;
+            box-shadow: 0 25px 50px rgba(147, 51, 234, 0.12), inset 0 1px 2px rgba(255, 255, 255, 0.8);
+        }
+
+        /* Top Window Dots */
+        .window-dots {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 20px;
+        }
+        .dot {
+            width: 8px;
+            height: 8px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+        }
+
+        /* Display Area */
+        .display-container {
+            text-align: right;
+            padding: 8px 8px 20px 8px;
+            min-height: 110px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            word-break: break-all;
+        }
+
+        .expression {
+            color: #7e22ce;
+            font-size: 1.2rem;
+            font-weight: 500;
+            min-height: 26px;
+            margin-bottom: 4px;
+        }
+
+        .result {
+            color: #ffffff;
+            font-size: 3rem;
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.4);
+        }
+
+        /* Keypad Grid Layout */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        button {
+            height: 60px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.22);
+            color: #6b21a8;
+            font-size: 1.3rem;
+            font-weight: 600;
+            border-radius: 20px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: all 0.15s ease-in-out;
+            outline: none;
+            user-select: none;
+        }
+
+        button:active {
+            background: rgba(255, 255, 255, 0.45);
+            transform: scale(0.95);
+        }
+
+        /* Cyan Enter Button */
+        .btn-enter {
+            grid-column: span 2;
+            background: rgba(165, 243, 252, 0.85) !important;
+            color: #0369a1 !important;
+            border: 1px solid rgba(255, 255, 255, 0.8) !important;
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3) !important;
+        }
+        .btn-enter:active {
+            background: rgba(165, 243, 252, 1) !important;
+        }
